@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+docker run \
+       -d  \
+       --link neo4j:neo4j \
+       --name server -p 3001:3001 \
+       -e NEO4J_USER=neo4j \
+       -e NEO4J_PASSWORD=test \
+       -e CORS=http://ec2-3-92-244-215.compute-1.amazonaws.com:3001 \
+       mcreations/infranodus
+
+#        -v $PWD/infranodus/config.json:/opt/infranodus/config.json
+

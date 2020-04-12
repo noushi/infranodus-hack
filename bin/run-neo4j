@@ -1,0 +1,14 @@
+#!/bin/bash
+
+mkdir -p $HOME/neo4j/data
+
+docker run \
+       -d \
+       --name=neo4j \
+       --publish=7474:7474 --publish=7687:7687 \
+       --volume=$HOME/neo4j/data:/data \
+       -e NEO4J_AUTH=none \
+       -e NEO4J_apoc_trigger_enabled=true  \
+       -e NEO4J_dbms_security_procedures_unrestricted=apoc.* \
+       -e NEO4JLABS_PLUGINS='["apoc"]' \
+       neo4j:3.5
